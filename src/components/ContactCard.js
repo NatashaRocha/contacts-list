@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import ContactHeaderCard from './ContactHeaderCard.js';
 
 class ContactCard extends Component {
   render() {
-    return <div></div>
+    return (
+      <div>
+        <ContactHeaderCard contact={this.props.contact} />
+      </div>
+    )
   }
 }
 
