@@ -35,7 +35,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app-container">
         <SearchBar onChange={this.filterContacts}/>
         <ContactsList contacts={this.state.filteredContacts}/>
       </div>

@@ -1,5 +1,50 @@
 body {
   margin: 0;
-  padding: 0;
   font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search-bar input:focus {
+  outline: 0;
+}
+
+.contacts-list {
+  margin: 0px;
+  padding: 0px;
+  height: 94vh;
+  overflow: scroll;
+  background: #E1F5FE;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 12px;
+  background: #B3E5FC;
+  border: 1px solid #81D4FA;
+  border-top: none;
+  line-height: 150%;
+}
+
+.contact-card-body {
+  margin: 10px 0px 0px 60px;
+}
+
+.contact-header-card {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  border-radius: 50%;
+  width: 50px;
+  margin-right: 10px;
 }

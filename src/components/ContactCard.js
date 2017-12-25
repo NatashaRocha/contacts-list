@@ -6,12 +6,12 @@ class ContactCard extends Component {
     let { contact, active, onClick } = this.props
 
     return (
-      <div onClick={onClick}>
+      <div onClick={onClick} className="contact-card">
         <ContactHeaderCard contact={contact} />
         {active && (
-          <div>
-            {contact.phone && <div><b>Phone Number:</b> {contact.phone}</div>}
-            {contact.cell && <div><b>Cellphone:</b> {contact.cell}</div>}
+          <div className="contact-card-body">
+            {contact.phone && <div>{contact.phone}</div>}
+            {contact.cell && <div>{contact.cell}</div>}
           </div>)}
       </div>
     )

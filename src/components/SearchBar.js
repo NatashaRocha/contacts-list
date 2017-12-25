@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class SearchBar extends Component {
   render() {
     return (
-      <form>
-        <input type="text" onChange={this.props.onChange}/>
+      <form className="search-bar">
+        <input type="text" placeholder="Pesquisar" onChange={this.props.onChange}/>
       </form>)
   }
 }

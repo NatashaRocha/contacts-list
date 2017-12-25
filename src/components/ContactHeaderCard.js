@@ -9,11 +9,11 @@ class ContactHeaderCard extends Component {
     let lastName = contact.name.last.charAt(0).toUpperCase() + contact.name.last.slice(1)
 
     return (
-      <div>
+      <div className="contact-header-card">
         <img src={contact.picture.medium} alt="" />
         <div>
-          <p>{`${firstName} ${lastName}`}</p>
-          {contact.email ? <p>{contact.email}</p> : <p>{contact.phone}</p>}
+          <b>{`${firstName} ${lastName}`}</b> ({contact.login.username})<br/>
+          {contact.email ? <i>{contact.email}</i> : <i>{contact.phone}</i>}
         </div>
       </div>
     )

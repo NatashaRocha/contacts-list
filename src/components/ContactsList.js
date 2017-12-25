@@ -14,7 +14,7 @@ class ContactsList extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className="contacts-list">
         {this.props.contacts.map((contact) => (
           <ContactCard
             contact={contact}
