@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch("http://www.mocky.io/v2/5a3e45532f00003a0e17136f")
+    fetch("https://randomuser.me/api?results=100")
     .then((results) => (results.json()))
     .then((data) => {
       let contacts = data.results
