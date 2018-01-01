@@ -7,9 +7,9 @@ class ContactsList extends Component {
     this.state = {active: ""}
   }
 
-  handleClick = (e, username) => {
+  handleClick = (e, id) => {
     e.preventDefault()
-    username === this.state.active ? this.setState({active: ""}) : this.setState({active: username})
+    id === this.state.active ? this.setState({active: ""}) : this.setState({active: id})
   }
 
   render() {
@@ -18,9 +18,9 @@ class ContactsList extends Component {
         {this.props.contacts.map((contact) => (
           <ContactCard
             contact={contact}
-            key={contact.login.username}
-            active={this.state.active === contact.login.username}
-            onClick={(e) => {this.handleClick(e, contact.login.username)}}/>
+            key={contact.id}
+            active={this.state.active === contact.id}
+            onClick={(e) => {this.handleClick(e, contact.id)}}/>
           ))
         }
       </ul>

@@ -15,7 +15,7 @@ class App extends Component {
     let { contacts } = this.state
 
     contacts = contacts.filter((contact) => (
-      contact.login.username.indexOf(e.target.value.toLowerCase()) !== -1 ||
+      contact.username.indexOf(e.target.value.toLowerCase()) !== -1 ||
       contact.email.indexOf(e.target.value.toLowerCase()) !== -1 ||
       contact.phone.replace(/-|\(|\)| /gi, "").indexOf(e.target.value.replace(/-|\(|\)| /gi, "")) !== -1  ||
       contact.cell.replace(/-|\(|\)| /gi, "").indexOf(e.target.value.replace(/-|\(|\)| /gi, "")) !== -1 
@@ -25,12 +25,9 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch("https://randomuser.me/api?results=100")
+    fetch("http://localhost:8080/api/contacts/100")
     .then((results) => (results.json()))
-    .then((data) => {
-      let contacts = data.results
-      this.setState({contacts: contacts, filteredContacts: contacts})
-    })
+    .then((contacts) => { this.setState({contacts: contacts, filteredContacts: contacts}) })
   }
 
   render() {

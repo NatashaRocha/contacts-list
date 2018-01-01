@@ -10,9 +10,9 @@ class ContactHeaderCard extends Component {
 
     return (
       <div className="contact-header-card">
-        <img src={contact.picture.medium} alt="" />
+        <img src={contact.picture} alt="" />
         <div>
-          <b>{`${firstName} ${lastName}`}</b> ({contact.login.username})<br/>
+          <b>{`${firstName} ${lastName}`}</b> ({contact.username})<br/>
           {contact.email ? <i>{contact.email}</i> : <i>{contact.phone}</i>}
         </div>
       </div>
