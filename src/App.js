@@ -14,12 +14,16 @@ class App extends Component {
   filterContacts = (e) => {
     let { contacts } = this.state
 
-    contacts = contacts.filter((contact) => (
-      contact.username.indexOf(e.target.value.toLowerCase()) !== -1 ||
-      contact.email.indexOf(e.target.value.toLowerCase()) !== -1 ||
-      contact.phone.replace(/-|\(|\)| /gi, "").indexOf(e.target.value.replace(/-|\(|\)| /gi, "")) !== -1  ||
-      contact.cell.replace(/-|\(|\)| /gi, "").indexOf(e.target.value.replace(/-|\(|\)| /gi, "")) !== -1 
-    ))
+    contacts = contacts.filter((contact) => {
+      let search = e.target.value.toLowerCase()
+      return (
+        `${contact.name.first} ${contact.name.last}`.toLowerCase().indexOf(search) !== -1 ||
+        contact.username.indexOf(search) !== -1 ||
+        contact.email.indexOf(search) !== -1 ||
+        contact.phone.replace(/-|\(|\)| /gi, "").indexOf(search.replace(/-|\(|\)| /gi, "")) !== -1  ||
+        contact.cell.replace(/-|\(|\)| /gi, "").indexOf(search.replace(/-|\(|\)| /gi, "")) !== -1 
+      )
+    })
 
     this.setState({filteredContacts: contacts})
   }
