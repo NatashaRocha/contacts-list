@@ -7,11 +7,13 @@ class App extends Component {
     super(props)
     this.state = {
       contacts: [],
-      filteredContacts: []
+      filteredContacts: [],
+      active: ""
     }
   }
 
   filterContacts = (e) => {
+    this.setState({active: ""})
     let { contacts } = this.state
 
     contacts = contacts.filter((contact) => {
@@ -28,6 +30,11 @@ class App extends Component {
     this.setState({filteredContacts: contacts})
   }
 
+  handleClick = (e, id) => {
+    e.preventDefault()
+    id === this.state.active ? this.setState({active: ""}) : this.setState({active: id})
+  }
+
   componentWillMount() {
     fetch("http://localhost:8080/api/contacts/100")
     .then((results) => (results.json()))
@@ -38,7 +45,10 @@ class App extends Component {
     return (
       <div className="app-container">
         <SearchBar onChange={this.filterContacts}/>
-        <ContactsList contacts={this.state.filteredContacts}/>
+        <ContactsList
+          contacts={this.state.filteredContacts}
+          active={this.state.active}
+          onClick={this.handleClick}/>
       </div>
     );
   }
