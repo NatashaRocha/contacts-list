@@ -39,15 +39,32 @@ router.use((req, res, next) => {
   next()
 })
 
+// GET all contacts
 router.route('/contacts').get((req, res) => {
   console.log("All contacts were requested")
   res.json(contactsList)
   })
 
+// GET x contacts
 router.route('/contacts/:quantity').get((req, res) => {
   quantity = parseInt(req.params.quantity)
   console.log(`${quantity} contacts were requested`)
   typeof quantity == 'number' && res.json(contactsList.slice(0, quantity))
+  })
+
+// POST contact
+
+// PUT (edit) contact
+
+// DELETE contact
+router.route('/contacts/:id').delete((req, res) => {
+  lengthBefore = contactsList.length
+  contactsList = contactsList.filter((contact) => (contact.id != req.params.id))
+  lengthAfter = contactsList.length
+  lengthBefore != lengthAfter ?
+    console.log(`Contact with id ${req.params.id} was removed from list`) :
+    console.log(`No contact with id ${req.params.id} could be found`)
+  res.json(contactsList)
   })
 
 // REGISTER ROUTES ////////////////////////////////////////////////////////////////////////////
