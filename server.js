@@ -14,13 +14,14 @@ var port = process.env.PORT || 8080
 
 // RETRIEVE CONTACTS AND SAVE IN MEMORY ///////////////////////////////////////////////////////
 
+var counter = 0 // Gives each user a unique id
 var contactsList = []
 
-fetch("https://randomuser.me/api?results=5000")
+fetch("https://randomuser.me/api?results=1")
     .then((results) => (results.json()))
     .then((data) => {
       let contacts = data.results.map((contact, index) => ({
-        id: index,
+        id: counter++,
         name: {first: contact.name.first, last: contact.name.last},
         email: contact.email,
         username: contact.login.username,
@@ -45,6 +46,13 @@ router.route('/contacts').get((req, res) => {
   res.json(contactsList)
   })
 
+// GET contact with ID x
+router.route('/contact/:id').get((req, res) => {
+  id = parseInt(req.params.id)
+  console.log(`Contact with id ${id} was requested`)
+  typeof id == 'number' && res.json(contactsList.filter((contact) => (contact.id == req.params.id)))
+})
+
 // GET x contacts
 router.route('/contacts/:quantity').get((req, res) => {
   quantity = parseInt(req.params.quantity)
@@ -53,8 +61,26 @@ router.route('/contacts/:quantity').get((req, res) => {
   })
 
 // POST contact
+router.route('/contact').post((req, res) => {
+  console.log(req.params)
+  newContact = {
+    id: counter++,
+    name: {first: req.params.firstName, last: req.params.lastName},
+    email: req.params.email,
+    username: req.params.username,
+    phone: req.params.phone,
+    cell: req.params.cell,
+    picture: req.params.picture
+  }
+  contactsList.push(newContact)
+  console.log(`New contact was added for a total of ${contactsList.length} contacts`)
+  res.json(newContact)
+})
 
 // PUT (edit) contact
+router.route('/contact/:id').put((req, res) => {
+
+})
 
 // DELETE contact
 router.route('/contacts/:id').delete((req, res) => {
